@@ -1,0 +1,6 @@
+@BM_Project_HostAddress = http://localhost:5207
+
+GET {{BM_Project_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
