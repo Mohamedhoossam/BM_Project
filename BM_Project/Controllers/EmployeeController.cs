@@ -31,7 +31,7 @@ namespace BMEmployee.UI.Controllers
 			else
 			{
 				generalResponse.IsSuccess = false;
-				generalResponse.Data = "Empty";
+				generalResponse.Data = "Empty1";
 
 			}
 
