@@ -1,5 +1,6 @@
 ﻿using BMEmployee.Core.DTO;
 using BMEmployee.Service.Services.EmployeeS;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,7 @@ namespace BMEmployee.UI.Controllers
 		}
 
         [HttpPost]
+		[Authorize]
 		public async Task<IActionResult> AddEmployee([FromForm]EmployeeDTO emp)
 		{
 			await _employeService.CreateService(emp);
@@ -34,9 +36,7 @@ namespace BMEmployee.UI.Controllers
 				generalResponse.Data = "Empty1";
 
 			}
-
-
-			return Created();
+			return Ok("The Employee Added");
 		}
 	}
 }
