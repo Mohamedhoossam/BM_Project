@@ -19,24 +19,65 @@ namespace BMEmployee.UI.Controllers
         [HttpPost]
 		public async Task<IActionResult> AddEmployee([FromForm]EmployeeDTO emp)
 		{
-			await _employeService.CreateService(emp);
-
 			GeneralResponse generalResponse = new GeneralResponse();
-			if(emp != null) {
-				generalResponse.IsSuccess= true;
-				generalResponse.Data = emp;
 
+			generalResponse= await _employeService.CreateService(emp);
 
+			return Ok(generalResponse);
+		}
+
+		[HttpGet("{id}")]
+		public async Task<ActionResult<GeneralResponse>> GetById(Guid id)
+		{
+			GeneralResponse generalResponse = new GeneralResponse();
+			generalResponse = await _employeService.GetByIdService(id);
+
+			if (generalResponse.IsSuccess)
+			{
+				return Ok(generalResponse);
 			}
 			else
 			{
-				generalResponse.IsSuccess = false;
-				generalResponse.Data = "Empty1";
-
+				return BadRequest("No employee found with this number");
+				
 			}
-
-
-			return Created();
 		}
+
+		[HttpGet]
+		public async Task<ActionResult<GeneralResponse>> GetAll()
+		{
+
+			GeneralResponse generalResponse= new GeneralResponse();
+
+			generalResponse = await _employeService.GetAllService();
+
+			if(generalResponse.IsSuccess)
+			{
+				return Ok(generalResponse);
+			}
+			return BadRequest();
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> Delete(Guid id)
+		{
+			await _employeService.DeleteService(id);
+			return NoContent();
+
+		}
+
+		[HttpPut]
+		public async Task<ActionResult> Update([FromQuery]EmployeUpdateDto employeeDTO, [FromQuery] Guid id)
+		{
+
+			GeneralResponse generalResponse = new GeneralResponse();
+			generalResponse = await _employeService.UpdateService(employeeDTO, id);
+			if(generalResponse.IsSuccess)
+			{
+				return Ok(generalResponse);
+			}
+			return BadRequest(generalResponse);
+		}
+
 	}
 }

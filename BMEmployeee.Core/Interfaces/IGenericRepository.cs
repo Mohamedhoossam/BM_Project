@@ -13,7 +13,7 @@ namespace BMEmployee.Core.Interfaces
       
        Task<IEnumerable<T>> GetAll();
 
-		Task<T> GetByID(int id);
+		Task<T> GetByID(Guid id);
 
 		Task Add(T entity);
 

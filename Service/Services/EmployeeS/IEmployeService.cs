@@ -10,11 +10,11 @@ namespace BMEmployee.Service.Services.EmployeeS
 {
 	public interface IEmployeService
 	{
-		Task<IEnumerable<EmployeeDTO>> GetAllService();
-		Task<EmployeeDTO> GetByIdService(int id);
+		Task<GeneralResponse> GetAllService();
+		Task<GeneralResponse> GetByIdService(Guid id);
 		Task DeleteService (Guid id);
-		Task UpdateService(EmployeeDTO entity,Guid id);
-		Task CreateService (EmployeeDTO entity);
+		Task<GeneralResponse> UpdateService(EmployeUpdateDto entity,Guid id);
+		Task<GeneralResponse> CreateService (EmployeeDTO entity);
 
 		
 
