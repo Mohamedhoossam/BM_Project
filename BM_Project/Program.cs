@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using BMEmployee.Service.Services.DepartmentS;
 
 namespace BM_Project
 {
@@ -73,6 +74,7 @@ namespace BM_Project
 
 			builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 			builder.Services.AddScoped<IEmployeService , EmployeeService>();
+			builder.Services.AddScoped<IDepartmentService , DepartmentService>();
 			var app = builder.Build();
 			
 			

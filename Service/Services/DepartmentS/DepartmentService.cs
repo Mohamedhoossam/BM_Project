@@ -30,6 +30,8 @@ namespace BMEmployee.Service.Services.DepartmentS
 				};
 
 				await _unitOfWork.DepartmentRepository.Add(dep);
+				await _unitOfWork.Complete();
+
 
 				generalResponse.IsSuccess = true;
 				generalResponse.Data = dep;
@@ -53,6 +55,8 @@ namespace BMEmployee.Service.Services.DepartmentS
 			if(dep != null)
 			{
 				 _unitOfWork.DepartmentRepository.Delete(dep);
+				 await _unitOfWork.Complete();
+
 				generalResponse.IsSuccess=true;
 				
 
